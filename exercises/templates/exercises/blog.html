@@ -1,0 +1,14 @@
+{% extends 'base_alternate.html' %}
+{% load static %}
+
+{% block body %}
+<h2>Photography blog</h2>
+
+<img src='{% static "img/photography.jpg" %}' />
+
+<ul>
+    {% for data in blog %}
+        <li><a href="{% url 'exercises:blog_details' id=data.id %}">{{data.title}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

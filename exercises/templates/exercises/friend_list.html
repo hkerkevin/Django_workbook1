@@ -1,0 +1,25 @@
+{% extends 'jumbotron-narrow.html' %} 
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<h2>Friends</h2>
+<ol>
+    {% for friend in all_friends %}
+        <li>{{friend.name}}
+            <form action="{% url 'exercises:delete_friend' friend_id=friend.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ol>
+
+<form action="friend_save" method="post">
+    {% csrf_token %}
+<input type="text" name="name" placeholder="Name" />                
+<button type="submit">Submit</button>        
+</form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{superhero_name}} - Superhero results
+{% endblock %}
+
+{% block body %}
+<h2>Superhero search</h2>
+<p>{{num}} results for {{superhero_name}} </p>
+
+<img src='{% static "img/marvel.jpg" %}' />
+
+<ol>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Superpower</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for superhero in superheroes %}
+            <tr>
+                <td><a href="{% url 'exercises:hero_details' id=superhero.id %}">{{superhero.name}}</a></td>
+                <td>{{superhero.superpower}}</td>
+                <td>{{superhero.age}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</ol>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "journal.html" %}
+
+{% block title %}
+Tasks
+{% endblock %}
+
+{% block body %}
+<h1>Task List</h1>
+<form action="add_task" method="post">
+    {% csrf_token %}
+    <div class="col-md-6">
+        <label for="task_item">TASK ITEM</label>
+        <input id="task_item" type="text" name="task" placeholder="task item"/>
+        
+        <p><label for="priority">PRIORITY</label>
+        <select id="priority" name="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select></p>
+        <p><button type="submit">Add</button></p>
+    </div>
+</form>
+    <div class="col-md-6">
+        <form action="task_list" method="get">
+            <input type="text" name="q" placeholder="search tasks" value={{search}}>
+            <label for="priority">PRIORITY</label>
+            <select id="priority" name="priority">
+                <option {% if priority == 0 %}selected{% endif %} value="0"></option>
+                <option {% if priority == 1 %}selected{% endif %} value="1">1</option>
+                <option {% if priority == 2 %}selected{% endif %} value="2">2</option>
+                <option {% if priority == 3 %}selected{% endif %} value="3">3</option>
+                <option {% if priority == 4 %}selected{% endif %} value="4">4</option>
+                <option {% if priority == 5 %}selected{% endif %} value="5">5</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>PRIORITY</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in incomplete_tasks %}
+                <tr>
+                    <td>{{task.item}}</td>
+                    <td>{{task.priority}}</td>
+                    <td>
+                        <form action="{% url "exercises:update_task" task_id=task.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Completed</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action= "{% url "exercises:edit_task" task_id=task.id %}" method="get">
+                             <button class="btn btn-light" type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url "exercises:delete_task" task_id=task.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Completed</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>PRIORITY</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in completed_tasks %}
+                <tr>
+                    <td><strike>{{task.item}}</strike></td>
+                    <td><strike>{{task.priority}}</strike></td>
+                    <td>
+                        <form action="{% url "exercises:update_task" task_id=task.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Incomplete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url "exercises:delete_task" task_id=task.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

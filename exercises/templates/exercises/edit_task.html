@@ -1,0 +1,23 @@
+{% extends "journal.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<h2>Edit task</h2>
+<form action="{% url "exercises:edit_task_save" task_id=task.id %}" method="post">
+    {% csrf_token %}
+    <label for="task_item">TASK ITEM</label>
+    <input id="task_item" type="text" name="task" value="{{task.item}}"/>
+        
+    <p><label for="priority">PRIORITY</label>
+    <select id="priority" name="priority">
+        <option {% if task.priority == 1 %}selected{% endif %} value="1">1</option>
+        <option {% if task.priority == 2 %}selected{% endif %} value="2">2</option>
+        <option {% if task.priority == 3 %}selected{% endif %} value="3">3</option>
+        <option {% if task.priority == 4 %}selected{% endif %} value="4">4</option>
+        <option {% if task.priority == 5 %}selected{% endif %} value="5">5</option>
+    </select></p>
+    <p><button type="submit">Save</button></p>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "jumbotron-narrow.html" %}
+
+{% block title %}
+{{ edit_phone.name }} page
+{% endblock %}
+
+{% block body %}
+<h4>Edit contact</h4>
+<form action="{% url "exercises:edit_phone_save" id=edit_phone.id %}" method="post">
+    {% csrf_token %}
+    <p><input type="text" name="name" value="{{ edit_phone.name }}"/></p>
+    <p><input type="text" name="phone" value="{{ edit_phone.phone }}"/></p>
+    <p><textarea rows="5" cols="30" name="address">{{ edit_phone.address }}</textarea></p>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
+

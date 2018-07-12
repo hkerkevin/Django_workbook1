@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2>{{cc.name}}</h2>
+    <p><i>Number:</i> {{cc.number}}</p>
+    <p><i>Type:</i> {{cc.type}}</p>
+    <hr>
+    <a href="{% url 'exercises:credit_cards' %}"><< back</a>
+{% endblock %}

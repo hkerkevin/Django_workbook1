@@ -1,0 +1,14 @@
+{% extends "jumbotron-narrow.html" %}
+
+{% block title %}
+{{edit_food.name}} page
+{% endblock %}
+
+{% block body %}
+<h3>Edit Food</h3>
+<form action="{% url "exercises:edit_food_save" food_id=edit_food.id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="edit_food" value="{{ edit_food.name }}" />
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

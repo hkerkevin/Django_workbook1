@@ -1,0 +1,46 @@
+{% extends "jumbotron-narrow.html" %}
+{% load static %}
+
+{% block title %}
+Athletes
+{% endblock %}
+
+{% block body %}
+<h2>Athletes</h2>
+<img src="{% static "img/sports.png" %}" height="250" width="350"/>
+
+<p><form action="add_athlete" method="post">
+    {% csrf_token %}
+    <p><input type="text" name="name" placeholder="athlete name"/></p>
+    <p><select name="sport">
+        <option value="NHL">NHL</option>
+        <option value="NFL">NFL</option>
+        <option value="MLB">MLB</option>
+        <option value="NBA">NBA</option>
+      </select></p>
+    <input type="submit" value="Add"/>
+</form></p>
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Sport</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for athlete in all_athletes %}
+            <tr class="{% if athlete.sport == "MLB" %}success{% endif %} {% if athlete.sport == "NFL" %}danger{% endif %}
+                {% if athlete.sport == "NHL" %}warning{% endif %} {% if athlete.sport == "NBA" %}info{% endif %}">
+                <td>{{ athlete.name }}</td>
+                <td>{{ athlete.sport }}</td>
+                <td><form action="{% url "exercises:delete_athlete" athlete_id=athlete.id %}" method="post">
+                    <button type="submit">Delete</button>
+                </form></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<form action="{% url 'exercises:ernie' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="body_text" />
+    <button type="submit">submit</button>
+</form>
+
+{% endblock %}
+

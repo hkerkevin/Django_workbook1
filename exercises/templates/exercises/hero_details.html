@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{superhero.name}} page
+{% endblock %}
+
+{% block body %}
+
+<h3>{{superhero.name}}</h3>
+<p><em>Superpower: </em>{{superhero.superpower}}</p>
+<p><em>Rating: </em>{{superhero.rating}}</p>
+<p><em>Age: </em>{{superhero.age}}</p>
+<hr>
+<a href="{% url 'exercises:hero_search' %}"><< back</a>
+
+{% endblock %}

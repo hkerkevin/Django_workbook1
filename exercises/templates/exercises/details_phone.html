@@ -1,0 +1,14 @@
+{% extends "jumbotron-narrow.html" %}
+{% load static %}
+
+{% block title %}
+{{ details_phone.name }} page
+{% endblock %}
+
+{% block body %}
+<h3>{{ details_phone.name }}</h3>
+<p>{{ details_phone.phone }}</p>
+<p>{{ details_phone.address }}</p>
+<hr>
+<a href="{% url "exercises:phone_book" %}"><< Back</a>
+{% endblock %}

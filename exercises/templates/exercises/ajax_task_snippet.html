@@ -1,0 +1,45 @@
+<div id="task_list">
+
+<h4>Complete List</h4>
+
+<table id="completed_tasks" class="table table-striped">
+    <thead>
+        <tr>
+            <th>COMPLETED</th>
+            <th>ITEM</th>
+            <th>PRIORITY</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in completed_tasks %}
+        <tr>
+            <td><input data-task_id = "{{task.id}}" class="completed" type="checkbox" name="is_completed" checked/></td>
+            <td><strike>{{task.item}}</strike></td>
+            <td>{{task.priority}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4>Incomplete List</h4>
+
+<table id="incomplete_tasks" class="table table-striped">
+    <thead>
+        <tr>
+            <th>COMPLETED</th>
+            <th>ITEM</th>
+            <th>PRIORITY</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in incomplete_tasks %}
+        <tr>
+            <td><input data-task_id = "{{task.id}}" class="completed" type="checkbox" name="is_completed" /></td>
+            <td>{{task.item}}</td>
+            <td>{{task.priority}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>

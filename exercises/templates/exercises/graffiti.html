@@ -1,0 +1,21 @@
+{% extends 'base_alternate.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<h2>Graffiti</h2>
+<form action="graffiti_save" method="post">
+    {% csrf_token %}
+    <p><textarea rows="10" cols="50" name="message" placeholder="Graffiti message"></textarea></p>
+    <p><input type="text" name="author" placeholder="author"></p>
+    <p><button type="submit">Add</button></p>
+</form>
+
+<ol>
+    {% for graffiti in all_graffiti %}
+        <li><b>{{graffiti.message}}</b> - {{graffiti.author}}</li>
+    {% endfor %}
+</ol>
+
+{% endblock %}

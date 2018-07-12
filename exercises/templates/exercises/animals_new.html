@@ -1,0 +1,29 @@
+{% extends "base_alternate.html" %}
+
+{% block title %}
+Animal new
+{% endblock %}
+
+{% block body %}
+<h2>Animals</h2>
+
+<table class="table highlighted-table">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>birthplace</th>
+            <th>male</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for animal in animals_new %}
+                <tr>
+                    <td>{{animal.name}}</td>
+                    <td>{{animal.birthplace}}</td>
+                    <td>{{animal.is_male}}</td>
+                </tr>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+{% endblock %}

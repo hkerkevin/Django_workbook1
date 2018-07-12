@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ajax task list 
+{% endblock %}
+
+
+{% block body %}
+<h1>Task List</h1>
+<form action="add_ajax_task" method="post">
+    {% csrf_token %}
+    <label for="task">TASK</label>
+    <input id="task" type="text" name="task"/>
+    <p><label for="priority">PRIORITY</label>
+        <select id="priority" name="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select></p>
+    <input id="completed" type="checkbox" name="is_completed" checked/>
+    <label for="completed">Completed</label>
+    <p><input id="submit" type="submit" value="Submit"/></p>
+</form>
+<br>
+
+{% include "exercises/ajax_task_snippet.html" %}
+
+<script>
+    var csrf_token = "{{ csrf_token }}";
+    $(function() {
+        $("input#submit").on("click", function() {
+            $.post( "test", {"task": $("input#task").val() , "priority": $("select#priority").val(), "csrfmiddlewaretoken": csrf_token}, function( data ) {
+                $("table#task_list").html( data );
+            });
+            return false;
+        });
+        
+        $("div#task_list").on("click", "input.completed", function() {
+           console.log($(this).attr("data-task_id"))
+           $.post( "toggle_complete", {"id" : $(this).attr("data-task_id"), "csrfmiddlewaretoken": csrf_token}, function(data) {
+                $("div#task_list").html( data );
+           });
+        });
+        
+        $('#completed_tasks').DataTable();
+        $('#incomplete_tasks').DataTable();
+    });
+</script>
+{% endblock %}
+

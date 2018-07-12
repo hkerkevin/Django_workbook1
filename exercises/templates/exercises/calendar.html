@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<style>
+    .box {
+    display: none;
+    max-width: 360px;
+    margin: 0 auto;
+    font-weight: 600;
+    margin-top: 2em;
+    padding: 1.6em;
+    background-color: #fafafa;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    -o-box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    -moz-box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    overflow: hidden;
+    }
+    
+    .boxClicked {
+    display: block;
+    }
+</style>
+<div class="calendar"></div>
+<div class="box"></div>
+
+<script>
+    $(function() {
+        var details = [];
+        //Ajax call JSON page for data
+        $.get( "fbview", function( data ) {
+            details = data;
+             //Recreate data array to fit the pignose format
+            var data = [];
+            for(var i = 0; i < details.length; i++){
+                item = {};
+                item["name"] = details[i]["EventTitle"];
+                item["date"] = moment.parseZone(details[i]["StartDateTime"]).format("YYYY-MM-DD"); //parseZone strips the time zone
+                data.push(item);
+            }
+        
+            //create colors dictionary to color each event
+            var colors = {};
+            data.forEach(function(item){
+                colors[item.name] = "#2fabb7";
+            });
+    
+            //print out the calendar
+            $('.calendar').pignoseCalendar({
+        	    scheduleOptions: {
+        		    colors: colors
+        	    },
+        	    schedules: data,
+        	    select: function(date, context) {
+        	            lst = []
+        		        for(var i = 0; i < context.storage.schedules.length; i++){
+        		            lst.push(context.storage.schedules[i]["name"] + " ");
+        		        }
+        		        if(context.storage.schedules[0]){
+        		            $(".box").addClass("boxClicked");
+        		            $(".box").text("Events: " + lst);
+        		        } else {
+        		            $(".box").removeClass("boxClicked");
+        		        }
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

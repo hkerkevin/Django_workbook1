@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %} <!-- top of page -->
+
+
+{% block body %}
+<!-- between block body tags... -->
+<link rel="stylesheet" type="text/css" href="{% static "css/custom.css" %}">
+<script type="text/javascript" src="{% static "js/custom.js" %}"></script>
+<img src='{% static "machoman.jpg" %}' />
+<img src='{% static "img/little_michael.jpg" %}' />
+{% endblock %}

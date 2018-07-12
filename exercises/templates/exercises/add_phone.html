@@ -1,0 +1,16 @@
+{% extends "jumbotron-narrow.html" %}
+
+{% block title %}
+Add Contact
+{% endblock %}
+
+{% block body %}
+<h4>Phone Book</h4>
+<form action="phone_book_save" method="post">
+    {% csrf_token %}
+    <p><input type="text" name="name" placeholder="name"/></p>
+    <p><input type="text" name="phone" placeholder="phone"/></p>
+    <p><textarea rows="5" cols="30" name="address" placeholder="address"></textarea></p>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}

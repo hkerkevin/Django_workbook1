@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Animals</h1>
+            <!--<p><img class="img-rounded padded-img" src='{% static "img/animals.jpg" %}' alt="My image"/></p>-->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>birthplace</th>
+                <th>is_male</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for animal in animals %}
+            <tr>
+                <td>{{ animal.name }}</td>
+                <td>{{ animal.birthplace }}</td>
+                <td>{{ animal.is_male }}</td>
+            </tr>
+          {% endfor %}
+            
+            
+        </tbody>
+       
+    </table>
+
+{% endblock %}
