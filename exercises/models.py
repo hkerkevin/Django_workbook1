@@ -249,3 +249,4 @@ class Ajax_Task2(models.Model):
     
     def __str__(self):
         return self.item
+

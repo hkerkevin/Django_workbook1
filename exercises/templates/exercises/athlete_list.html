@@ -1,4 +1,4 @@
-{% extends "jumbotron-narrow.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}
@@ -36,6 +36,7 @@ Athletes
                 <td>{{ athlete.name }}</td>
                 <td>{{ athlete.sport }}</td>
                 <td><form action="{% url "exercises:delete_athlete" athlete_id=athlete.id %}" method="post">
+                    {% csrf_token %}
                     <button type="submit">Delete</button>
                 </form></td>
             </tr>
