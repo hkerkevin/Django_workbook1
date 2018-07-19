@@ -13,8 +13,6 @@ class Command(BaseCommand):
                                         is_good=obj['fields']['is_good'], is_male=obj['fields']['is_male'], 
                                         rating=obj['fields']['rating'], age=obj['fields']['age'])
         
-        print(len(Superhero.objects.all()))
-        
         #Populate data to Animal
         Animal.objects.all().delete()
         
@@ -22,9 +20,7 @@ class Command(BaseCommand):
             Animal.objects.create(name=obj['fields']['name'], birthplace=obj['fields']['birthplace'],
                                         is_male=obj['fields']['is_male'])
         
-        print(len(Animal.objects.all()))
-        
-        
+
         #Populate data to Car
         Car.objects.all().delete()
         
@@ -32,7 +28,6 @@ class Command(BaseCommand):
             Car.objects.create(make=obj['fields']['make'], model=obj['fields']['model'],
                                         year=obj['fields']['year'])
         
-        print(len(Car.objects.all()))
         
         
         #Populate data to Stock
@@ -42,16 +37,12 @@ class Command(BaseCommand):
             Stock.objects.create(company=obj['fields']['company'], sector=obj['fields']['sector'],
                                         market_cap=obj['fields']['market_cap'])
         
-        print(len(Stock.objects.all()))
-    
     
         #Populate data to Message
         Message.objects.all().delete()
         
         for obj in message_data:
             Message.objects.create(text=obj['fields']['text'], is_hidden=obj['fields']['is_hidden'])
-        
-        print(len(Message.objects.all()))
         
         
         #Populate data to Employee
@@ -61,7 +52,6 @@ class Command(BaseCommand):
             Employee.objects.create(employee=obj['fields']['employee'], department=obj['fields']['department'],
                                     salary=obj['fields']['salary'])
         
-        print(len(Employee.objects.all()))
         
         
         #Populate data to Credit_Card
@@ -71,7 +61,6 @@ class Command(BaseCommand):
             Credit_Card.objects.create(number=obj['fields']['number'], type=obj['fields']['type'],
                                     name=obj['fields']['name'])
         
-        print(len(Credit_Card.objects.all()))
         
         #Populate data to Blog
         Blog.objects.all().delete()
@@ -79,7 +68,6 @@ class Command(BaseCommand):
         for obj in blog_data:
             Blog.objects.create(title=obj['fields']['title'], body=obj['fields']['body'])
         
-        print(len(Blog.objects.all()))
         
         
         #Populate data to Friend
@@ -88,7 +76,6 @@ class Command(BaseCommand):
         for obj in friend_data:
             Friend.objects.create(name=obj['fields']['name'])
             
-        print(len(Friend.objects.all()))
         
         #Populate data to Graffiti
         Graffiti.objects.all().delete()
@@ -96,7 +83,6 @@ class Command(BaseCommand):
         for obj in graffiti_data:
             Graffiti.objects.create(message=obj['fields']['message'], author=obj['fields']['author'])
         
-        print(len(Graffiti.objects.all()))
         
          #Populate data to Food
         Food.objects.all().delete()
@@ -104,7 +90,6 @@ class Command(BaseCommand):
         for obj in food_data:
             Food.objects.create(name=obj['fields']['name'])
         
-        print(len(Food.objects.all()))
         
         #Populate data to Contact
         Contact.objects.all().delete()
@@ -113,7 +98,6 @@ class Command(BaseCommand):
             Contact.objects.create(name=obj['fields']['name'], phone=obj['fields']['phone'],
                                     address=obj['fields']['address'])
         
-        print(len(Contact.objects.all()))
         
         #Populate data to Athlete
         Athlete.objects.all().delete()
@@ -121,7 +105,6 @@ class Command(BaseCommand):
         for obj in athlete_data:
             Athlete.objects.create(name=obj['fields']['name'], sport=obj['fields']['sport'])
         
-        print(len(Athlete.objects.all()))
         
         #Populate data to Task
         Task.objects.all().delete()
@@ -130,7 +113,6 @@ class Command(BaseCommand):
             Task.objects.create(item=obj['fields']['item'], priority=obj['fields']['priority'],
                                         is_completed=obj['fields']['is_completed'])
         
-        print(len(Task.objects.all()))
         
         #Populate data to Ajax_Task
         Ajax_Task.objects.all().delete()
@@ -139,4 +121,3 @@ class Command(BaseCommand):
             Ajax_Task.objects.create(item=obj['fields']['item'], priority=obj['fields']['priority'],
                                         is_completed=obj['fields']['is_completed'])
         
-        print(len(Ajax_Task.objects.all()))
